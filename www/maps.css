@@ -1,0 +1,17 @@
+.map-svg {
+  display: block;
+  margin: auto;
+  padding-top: 10px;
+}
+
+.polygon {
+  opacity: 0.8;
+  stroke: white;
+  stroke-width: 0.5px;
+}
+
+.polygon:hover {
+  stroke: lightgrey;
+  stroke-width: 0.5px;
+  filter: url("#map-shadow");
+}
