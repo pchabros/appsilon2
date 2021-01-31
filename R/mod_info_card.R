@@ -16,11 +16,14 @@ mod_info_card_server <- function(input, output, session, value, name, gain, mont
       fluidRow(span(class = "card-value", value)),
       fluidRow(
         class = "info-card-body",
-        column(width = 10, span(class = "card-name", name)),
-        column(width = 2, class = "float-right", span(
-          class = "card-gain", gain,
-          style = gain_color(gain)
-        ))
+        column(
+          width = 12,
+          span(class = "card-name", name),
+          div(class = "float-right", span(
+            class = "card-gain", gain,
+            style = gain_color(gain)
+          ))
+        )
       ),
       fluidRow(
         class = "card-bottom",
