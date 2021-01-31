@@ -6,8 +6,8 @@ $(document).ready(function() {
     if ($(`#${id} > .plot`).length === 0) {
       // settings
       const margin = {
-        top: 5,
-        right: 40,
+        top: 20,
+        right: 50,
         bottom: 0,
         left: 50,
       };
@@ -54,7 +54,7 @@ $(document).ready(function() {
       if (!width) {
         width = parentDiv.innerWidth();
       }
-      const height = Math.min(width / 7, 200);
+      const height = Math.max(Math.min(width / 6, 200), 80);
       
       parentDiv.attr("height", height);
       

@@ -8,8 +8,10 @@ nav {
   display: none !important;
 }
 
-.wrapper {
-  margin: 50px 60px;
+@media (min-width: 600px) {
+  .wrapper {
+    margin: 50px 60px;
+  }
 }
 
 .title {

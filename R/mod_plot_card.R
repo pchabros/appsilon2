@@ -20,18 +20,19 @@ mod_plot_card_server <- function(input, output, session, title, tools = TRUE, .d
       class = "card plot-card", id = id,
       fluidRow(
         class = "card-panel",
-        column(width = if_else(tools, 6, 12), class = "panel-title", span(title)),
-        if (tools) {
-          div(
-            class = "card-tools float-right",
-            map(
-              c("expand", "minimize"),
-              ~button(ns(.x), .x)
+        div(
+          class = "col-12 panel-title",
+          span(title),
+          if (tools) {
+            div(
+              class = "card-tools float-right",
+              map(
+                c("expand", "minimize"),
+                ~button(ns(.x), .x)
+              )
             )
-          )
-        } else {
-          div(style = "height: 10px;")
-        }
+          }
+        )
       ),
       fluidRow(
         class = "card-body",

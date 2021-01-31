@@ -7,7 +7,7 @@ $(document).ready(function() {
       // settings
       const margin = {
         top: 0,
-        right: 60,
+        right: 80,
         bottom: 20,
         left: 30,
       };
@@ -98,7 +98,7 @@ $(document).ready(function() {
       if (!width) {
         width = parentDiv.innerWidth();
       }
-      const height = width / 2.92;
+      const height = Math.max(width / 2.6, 100);
       
       parentDiv.attr("height", height);
       
