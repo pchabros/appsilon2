@@ -99,7 +99,7 @@ $(document).ready(function() {
         width = parentDiv.innerWidth();
       }
       if (width < 600) {
-        margin.right *= 0.75;
+        margin.right = 30;
       }
       const height = Math.max(width / 2.6, 100);
       
