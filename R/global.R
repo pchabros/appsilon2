@@ -1,3 +1,4 @@
+library(kableExtra)
 library(jsonlite)
 library(magrittr)
 library(stringr)
@@ -7,7 +8,6 @@ library(tidyr)
 library(purrr)
 library(tidyr)
 library(wrapr)
-library(kableExtra)
 
 button <- function(id, img) {
   HTML(str_c('

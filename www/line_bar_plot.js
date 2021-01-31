@@ -7,7 +7,7 @@ $(document).ready(function() {
       // settings
       const margin = {
         top: 0,
-        right: 80,
+        right: 50,
         bottom: 20,
         left: 30,
       };
@@ -98,6 +98,9 @@ $(document).ready(function() {
       if (!width) {
         width = parentDiv.innerWidth();
       }
+      if (width < 600) {
+        margin.right *= 0.75;
+      }
       const height = Math.max(width / 2.6, 100);
       
       parentDiv.attr("height", height);
@@ -129,7 +132,7 @@ $(document).ready(function() {
       yDomain[1] += yExtent * 0.1;
       yScale.domain(yDomain).range([plotHeight, 0]);
       
-      yAxis.tickSize(-plotWidth);
+      yAxis.tickSize(-plotWidth * 0.95);
       yAxisG.transition().call(yAxis);
       
       // tooltip
