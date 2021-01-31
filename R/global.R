@@ -11,7 +11,7 @@ library(kableExtra)
 
 button <- function(id, img) {
   HTML(str_c('
-    <button id="', id, '" type="button" class="btn btn-default action-button shiny-bound-input">
+    <button id="', id, '" type="button" class="', img, ' btn btn-default action-button shiny-bound-input">
       <img src="', img, '.png" />
     </button>
   '))

@@ -1,6 +1,7 @@
 .plot-card {
   transition: all 0.3s;
   margin: 10px 0;
+  overflow: hidden;
 }
 
 .card-panel {
@@ -85,6 +86,10 @@
   
   .card-tools > .btn > img {
     transform: scale(0.4);
+  }
+  
+  .expand {
+    visibility: hidden;
   }
   
 }
