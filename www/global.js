@@ -1,6 +1,5 @@
-function handleDropdown(id) {
-  console.log(id);
-  $(`#${id}`).slideToggle();
+function addClassShow(id) {
+  $(`div[aria-labelledby="${id}"]`).toggleClass("show");
 }
 
 $(document).ready(function() {

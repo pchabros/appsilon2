@@ -1,12 +1,13 @@
+library(jsonlite)
+library(magrittr)
+library(stringr)
 library(shiny)
 library(dplyr)
 library(tidyr)
-library(jsonlite)
-library(magrittr)
 library(purrr)
-library(stringr)
 library(tidyr)
 library(wrapr)
+library(kableExtra)
 
 button <- function(id, img) {
   HTML(str_c('
@@ -16,18 +17,52 @@ button <- function(id, img) {
   '))
 }
 
+dropdownButton <- function(id, label, content) {
+  HTML(str_c('
+    <div class="dropdown">
+      <button onclick="addClassShow(\'', id, '\')" class="btn btn-secondary dropdown-toggle" type="button" id="', id, '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+        label,
+      '</button>
+      <div class="dropdown-menu" aria-labelledby="', id, '">',
+        content,
+      '</div>
+    </div>
+  '))
+}
+
 generate_data <- function() {
   
   set.seed(123)
   
-  cards <- data.frame(
-    value = c("$ 2 674 862", "657", "245", "12"),
-    name = c("TOTAL PROFIT", "ACTIVE USERS", "NEW ORDERS", "OPEN COMPLAINTS"),
-    gain = c("+4,5%", "+8,5%", "+3,9%", "-5,3%"),
-    ico = c("database", "user", "box-open", "ellipsis-h"),
-    color = c("#70a1d7", "#a1de93", "#f7f48b", "#f47c7c")
-  )
-  
+  cards <-
+    tibble(
+      value = c(2674862, 657, 245, 12),
+      .format = c(TRUE, FALSE, FALSE, FALSE),
+      name = c("TOTAL PROFIT", "ACTIVE USERS", "NEW ORDERS", "OPEN COMPLAINTS"),
+      gain = c("+4,5%", "+8,5%", "+3,9%", "-5,3%"),
+      ico = c("database", "user", "box-open", "ellipsis-h"),
+      color = c("#70a1d7", "#a1de93", "#f7f48b", "#f47c7c")
+    ) %>%
+    mutate(
+      monthly = map2(value, .format, function(val, form) {
+        temp <- tibble(
+          MONTH = month.abb,
+          VALUE = rnorm(length(MONTH), val, val * 0.25) %>%
+            abs() %>% round()
+        )
+        if (form) {
+          temp$VALUE <- temp$VALUE %>% format(big.mark = " ") %>% str_c("$ ", .)
+        } else {
+          temp$VALUE <- temp$VALUE %>% as.character()
+        }
+        return(temp)
+      }),
+      value = if_else(
+        !.format, as.character(value),
+        value %>% format(big.mark = " ") %>% str_c("$ ", .)
+      )
+    )
+    
   line_bar_plot <-
     month.name %>%
     str_to_upper() %>%

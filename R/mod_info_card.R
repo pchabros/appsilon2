@@ -3,7 +3,7 @@ mod_info_card_ui <- function(id) {
   uiOutput(ns("info_card"))
 }
 
-mod_info_card_server <- function(input, output, session, value, name, gain, ico, color) {
+mod_info_card_server <- function(input, output, session, value, name, gain, monthly, ico, color) {
   ns <- session$ns
   
   gain_color <- function(.gain) str_c("color: ", if_else(
@@ -24,12 +24,14 @@ mod_info_card_server <- function(input, output, session, value, name, gain, ico,
       ),
       fluidRow(
         class = "card-bottom",
-        column(width = 8, class = "dropdown-button", actionButton(
-          inputId = ns("button"),
-          label = "MONTHLY STATS",
-          icon = icon("chevron-down"),
-          onclick = str_c("handleDropdown('", ns("dropdown"), "')")
-        )),
+        column(
+          width = 8, class = "dropdown-container",
+          dropdownButton(
+            ns("dropdown"), "MONTHLY STATS",
+            monthly %>% as.data.frame() %>%
+              kbl(format = "html") %>% kable_styling()
+          )
+        ),
         column(
           width = 4, class = "float-right ico",
           icon(ico), style = str_c("background-color: ", color)
@@ -37,4 +39,5 @@ mod_info_card_server <- function(input, output, session, value, name, gain, ico,
       )
     )
   })
+  
 }

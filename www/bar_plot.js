@@ -7,7 +7,7 @@ $(document).ready(function() {
       // settings
       const margin = {
         top: 5,
-        right: 20,
+        right: 40,
         bottom: 0,
         left: 50,
       };

@@ -11,7 +11,6 @@ ui <- fluidPage(
   includeCSS("www/info_card.css"),
   includeCSS("www/plot_card.css"),
   includeCSS("www/plots.css"),
-  includeCSS("www/remove.js"),
   includeCSS("www/style.css"),
   includeCSS("www/maps.css"),
   tagList(

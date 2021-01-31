@@ -18,15 +18,18 @@
 .card-tools > .btn:active {
   background: transparent;
   outline: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
 }
 
 .card-tools > .btn:hover > img,
-.card-tools > .btn:focus > img {
+.card-tools > .btn:active > img {
   transform: scale(0.8);
 }
 
 .card-tools > .btn {
   background-color: transparent;
+  margin-left: -30px;
 }
 
 .card-tools > .btn > img {

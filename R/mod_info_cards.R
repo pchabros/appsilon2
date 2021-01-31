@@ -24,6 +24,7 @@ mod_info_cards_server <- function(input, output, session, .data) {
         value = value,
         name = name,
         gain = gain,
+        monthly = monthly,
         ico = ico,
         color = color
       )

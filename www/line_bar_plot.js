@@ -6,7 +6,7 @@ $(document).ready(function() {
     if ($(`#${id} > .plot`).length === 0) {
       // settings
       const margin = {
-        top: 15,
+        top: 0,
         right: 60,
         bottom: 20,
         left: 30,
@@ -45,7 +45,7 @@ $(document).ready(function() {
       const yScale = d3.scaleLinear();
       
       const xAxis = d3.axisBottom(xScale).ticks(6).tickSize(0);
-      const yAxis = d3.axisLeft(yScale).ticks(7);
+      const yAxis = d3.axisLeft(yScale).ticks(5);
       
       const xAxisG = plot.append("g").attr("class", "axis xAxis");
       
@@ -98,7 +98,7 @@ $(document).ready(function() {
       if (!width) {
         width = parentDiv.innerWidth();
       }
-      const height = width / 2.57;
+      const height = width / 2.92;
       
       parentDiv.attr("height", height);
       

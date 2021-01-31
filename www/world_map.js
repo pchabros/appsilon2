@@ -56,14 +56,19 @@ $(document).ready(function() {
       
       const path = d3.geoPath().projection(proj);
       
-      /*
       // tooltip
-      const tooltipText = (d) => `
-        <p>group: ${d.bar === "yellow" ? "low" : "high"}</p>
-        <p>max: ${d.max.toFixed(1)}</p>
-        <p>min: ${d.min.toFixed(1)}</p>
-        <p>delta: ${(d.max - d.min).toFixed(1)}</p>
-        `;
+      const tooltipText = (d) => {
+        const country = data.find((v) => v.country === d.id);
+        console.log(country);
+        if (country) {
+          const out = `
+            <p>country: ${country.country}</p>
+            <p>date: ${country.date_.toLocaleLowerCase()}</p>
+            <p>value: ${country.value.toFixed(1)}</p>
+          `;
+          return out;
+        }
+      };
       
       window.addEventListener("mousemove", function (e) {
         tooltip
@@ -71,17 +76,19 @@ $(document).ready(function() {
           .style("left", `${+e.clientX + 3}px`);
       });
       
-      function pointMouseOver() {
-        tooltip
-          .html(d3.select(this).attr("tooltip"))
-          .transition()
-          .style("opacity", 0.8);
+      function mouseOver() {
+        const polygonTooltip = d3.select(this).attr("tooltip");
+        if (polygonTooltip) {
+          tooltip
+            .html(polygonTooltip)
+            .transition()
+            .style("opacity", 0.8);
+        }
       }
       
-      function pointMouseLeave() {
+      function mouseLeave() {
         tooltip.transition().style("opacity", 0);
       }
-      */
       
       // scale
       const cScale = (d) => {
@@ -103,8 +110,11 @@ $(document).ready(function() {
             enter
               .append("path")
               .attr("class", "polygon")
+              .attr("tooltip", tooltipText)
               .attr("d", path)
-              .attr("fill", cScale);
+              .attr("fill", cScale)
+              .on("mouseover", mouseOver)
+              .on("mouseleave", mouseLeave);
           },
           (update) => {
             update.transition()

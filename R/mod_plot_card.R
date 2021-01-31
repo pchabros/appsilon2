@@ -25,7 +25,7 @@ mod_plot_card_server <- function(input, output, session, title, tools = TRUE, .d
           div(
             class = "card-tools float-right",
             map(
-              c("remove", "expand", "minimize"),
+              c("expand", "minimize"),
               ~button(ns(.x), .x)
             )
           )
@@ -41,24 +41,17 @@ mod_plot_card_server <- function(input, output, session, title, tools = TRUE, .d
     )
   })
   
-  session$onFlushed(
-    function() {
-      session$sendCustomMessage(plot_type, list(
-        id = str_c(id, "-plot"), data = toJSON(isolate(data_filtered()))
-      ))
-    },
-    once = TRUE
-  )
+  session$onFlushed(function() {
+    session$sendCustomMessage(plot_type, list(
+      id = str_c(id, "-plot"), data = toJSON(isolate(data_filtered()))
+    ))
+  })
   
   observe({
     session$sendCustomMessage(plot_type, list(
       id = str_c(id, "-plot"), data = toJSON(data_filtered())
     ))
   })
-  
-  observeEvent(input$remove, {
-    session$sendCustomMessage("remove", id)
-  })  
   
   observeEvent(input$expand, {
     session$sendCustomMessage("expand_toogle", id)
