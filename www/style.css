@@ -42,6 +42,19 @@ nav {
   outline-color: transparent !important;
 }
 
+table {
+  margin-bottom: 0 !important;
+}
+
+th {
+  font-weight: 500 !important;
+  border-bottom: 0.1px solid rgb(230, 230, 230) !important;
+}
+
+td {
+  border-top: 0.1px solid rgb(240, 240, 240) !important;
+}
+
 .float-right {
   float: right;
 }
